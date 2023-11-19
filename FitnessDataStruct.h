@@ -13,5 +13,13 @@ typedef struct {
 
 // Helper function prototypes
 void tokeniseRecord(const char *input, const char *delimiter, char *date, char *time, char *steps);
+void ReadFile(char *filename);
+int Number_of_records(char *filename);
+int Mean_step_count(char *filename);
+int Largest_step_counter(char *filename, FITNESS_DATA *largest_data);
+int Smallest_Steps(char *filename, FITNESS_DATA *smallest_data);
+int Longest_Above_500_Steps(char *filename, FITNESS_DATA *longest_data);
+
+
 
 #endif // FITNESS_DATA_STRUCT_H

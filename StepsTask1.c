@@ -82,3 +82,8 @@ int main()
     fclose(file);
     return 0;
 }
+
+// create a function to all 7 things
+// read an input into it
+// No need to create a function to read a file in
+// Manipulate data which we've been given after storing it into an array
