@@ -3,6 +3,8 @@
 #include <string.h>
 #include "FitnessDataStruct.h"
 
+
+
 // Global variables
 char filename[200]; // Moved filename to a global variable
 
@@ -10,6 +12,7 @@ int main()
 {
     char choice;
     char filename[200];
+    int counter;
 
     do
     {
@@ -23,16 +26,25 @@ int main()
         printf("Q: Quit\n");
         printf("\n");
         printf("Please enter your choice: ");
-        scanf(" %c", &choice); // Note the space before %c
+        scanf(" %c", &choice);
 
         switch (choice)
         {
         case 'A':
             printf("Please enter a file name: ");
             scanf("%s", filename);
+
+            size_t len = strlen(filename);
+            if (len >= 4 && strcmp(filename + len - 4, ".csv") == 0) {
+                printf("File successfully loaded.\n");
+            } else {
+                printf("Error: Could not find or open the file.\n");
+                return 1;
+            }
             break;
         case 'B':
             printf("The number of records is: %d\n", Number_of_records(filename));
+            counter = Number_of_records(filename);
             break;
         case 'C':
             {
@@ -53,25 +65,13 @@ int main()
             printf("The mean is: %d steps\n", Mean_step_count(filename));
             break;
         case 'F':
-            {
-                FITNESS_DATA longest_data;
-                int longestSteps = Longest_Above_500_Steps(filename, &longest_data);
-                if (longestSteps != -1)
-                {
-                    printf("Longest Period Above 500 Steps: %d\n", longestSteps);
-                    printf("Start Date: %s, Start Time: %s\n", longest_data.date, longest_data.time);
-                }
-                else
-                {
-                    printf("No period above 500 steps found.\n");
-                }
-            }
+            findLongestPeriod(filename);
             break;
         case 'Q':
             printf("Quitting the program.\n");
             break;
         default:
-            printf("Invalid choice\n");
+            printf("Invalid choice. Try again.\n");
             break;
         }
     } while (choice != 'Q');
