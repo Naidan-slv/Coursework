@@ -207,7 +207,7 @@ int Smallest_Steps(char *filename, FITNESS_DATA *smallest_data)
 void findLongestPeriod(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        perror("Error opening file");
+        perror("Unable to open this file");
         return;
     }
 
