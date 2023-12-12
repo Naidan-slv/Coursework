@@ -2,21 +2,17 @@
 #ifndef FITNESS_DATA_STRUCT_H
 #define FITNESS_DATA_STRUCT_H
 
-#define BUFFER_SIZE 255
-#define MAX_SENTENCES 500
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// Define an appropriate struct
 typedef struct {
 	char date[11];
 	char time[6];
 	int steps;
 } FITNESS_DATA;
 
-// Helper function prototypes
 void tokeniseRecord(const char *input, const char *delimiter,
                     char *date, char *time, char *steps) 
 {
@@ -50,7 +46,7 @@ int Number_of_records(char *filename)
         return 0; 
     }
 
-    char buffer[BUFFER_SIZE];
+    char buffer[100];
     int counter = 0;
 
     while (fgets(buffer, sizeof(buffer), file) != NULL)
@@ -71,7 +67,7 @@ int Mean_step_count(char *filename)
         return 0; 
     }
 
-    char buffer[BUFFER_SIZE];
+    char buffer[100];
     int sentence_count = 0;
     int sum = 0;
 
@@ -109,10 +105,10 @@ int Largest_step_counter(char *filename, FITNESS_DATA *largest_data)
         return -1; 
     }
 
-    char buffer[BUFFER_SIZE];
+    char buffer[100];
     int sentence_count = 0;
-    int sentences_max = MAX_SENTENCES; 
-    FITNESS_DATA sentences[MAX_SENTENCES]; 
+    int sentences_max = 100; 
+    FITNESS_DATA sentences[100]; 
 
     while (fgets(buffer, sizeof(buffer), file))
     {
@@ -161,10 +157,10 @@ int Smallest_Steps(char *filename, FITNESS_DATA *smallest_data)
         return -1; 
     }
 
-    char buffer[BUFFER_SIZE];
+    char buffer[100];
     int sentence_count = 0;
-    int sentences_max = MAX_SENTENCES; 
-    FITNESS_DATA sentences[MAX_SENTENCES]; 
+    int sentences_max = 100; 
+    FITNESS_DATA sentences[100]; 
 
     while (fgets(buffer, sizeof(buffer), file))
     {
@@ -185,7 +181,7 @@ int Smallest_Steps(char *filename, FITNESS_DATA *smallest_data)
 
     fclose(file); 
 
-    int x = 1000000; 
+    int x = 10000; 
     int index_x = -1;
 
     for (int i = 0; i < sentence_count; i++)
@@ -211,11 +207,11 @@ void findLongestPeriod(const char *filename) {
         return;
     }
 
-    FITNESS_DATA data[MAX_SENTENCES];
-    char buffer[BUFFER_SIZE];
+    FITNESS_DATA data[100];
+    char buffer[100];
 
     int dataSize = 0;
-    while (fgets(buffer, BUFFER_SIZE, file) != NULL && dataSize < MAX_SENTENCES) {
+    while (fgets(buffer, 100, file) != NULL && dataSize < 100) {
         char date[11], time[6], steps[10];
         tokeniseRecord(buffer, ",", date, time, steps);
         strcpy(data[dataSize].date, date);
